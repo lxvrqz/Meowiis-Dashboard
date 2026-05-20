@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meowii Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("userDropdown");
+        menu.classList.toggle("show");
+    }
+</script>
+
+<body>
+
+<video autoplay muted loop playsinline class="background-video">
+    <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+</video>
+
+<div class="background-overlay"></div>
+
+<div class="dashboard-container">
+    <div class="server-list">
+        {% for guild in guilds %}
+            <div class="server-card">
+                <span>{{ guild.name }}</span>
+
+                {% if guild.icon_url %}
+                    <img src="{{ guild.icon_url }}" class="server-icon">
+                {% else %}
+                    <div class="server-icon placeholder">
+                        {{ guild.name[0] }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="user-menu-wrapper">
+    <button class="avatar-button" onclick="toggleMenu()">
+        {% if user.avatar %}
+            <img
+                src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png?size=128"
+                class="user-avatar"
+                alt="Avatar">
+        {% else %}
+            <div class="user-avatar avatar-placeholder">
+                {{ user.username[0] }}
+            </div>
+        {% endif %}
+    </button>
+
+    <div class="user-dropdown" id="userDropdown">
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<a href="https://guns.lol/lxvrqz"
+   target="_blank"
+   class="credits">
+    Created by .ycv
+</a>
+
+</body>
+</html>
