@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meowii Socials</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='socials.css') }}">
+</head>
+
+<body>
+
+<div id="copy-toast">
+    ✓ Copied
+</div>
+
+<video autoplay muted loop playsinline class="background-video">
+    <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+</video>
+
+<div class="background-overlay"></div>
+
+<nav class="top-navbar">
+
+    <div class="navbar-logo">
+        Meowii
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/socials">Socials</a>
+        <a href="#">Commands</a>
+        <a href="#">Support</a>
+    </div>
+
+</nav>
+
+<div class="socials-container">
+
+    <div class="social-card">
+
+        <div class="social-header">
+
+            <div>
+                <h2>.ycv</h2>
+                <span>Founder | Dev</span>
+            </div>
+
+            <img
+                src="{{ url_for('static', filename='.ycv.png') }}"
+                class="social-avatar"
+                alt=".ycv">
+
+        </div>
+
+        <div class="social-links">
+
+            <a href="https://fakecrime.bio/lxvrqz"
+               target="_blank"
+               rel="noopener noreferrer">
+               Fakecrime
+            </a>
+
+            <a href="https://guns.lol/lxvrqz"
+               target="_blank"
+               rel="noopener noreferrer">
+               guns.lol
+            </a>
+
+            <a href="#"
+               onclick="copyDiscord('.ycv'); return false;">
+               Discord
+            </a>
+
+            <a href="https://github.com/lxvrqz"
+               target="_blank"
+               rel="noopener noreferrer">
+               GitHub
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="social-card">
+
+        <div class="social-header">
+
+            <div>
+                <h2>Yumeko</h2>
+                <span>Founder</span>
+            </div>
+
+            <img
+                src="{{ url_for('static', filename='yumeko.png') }}"
+                class="social-avatar"
+                alt="Yumeko">
+
+        </div>
+
+        <div class="social-links">
+
+            <a href="https://fakecrime.bio/yume.luv"
+               target="_blank"
+               rel="noopener noreferrer">
+               Fakecrime
+            </a>
+
+            <a href="#"
+               onclick="copyDiscord('juicyleacious.x'); return false;">
+               Discord
+            </a>
+
+            <a href="https://www.tiktok.com/@yume.luv?_r=1&_t=ZN-96VdFmY6Zt8"
+               target="_blank"
+               rel="noopener noreferrer">
+               TikTok
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="user-menu-wrapper">
+    <button class="avatar-button" onclick="toggleMenu()">
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("userDropdown");
+        menu.classList.toggle("show");
+    }
+
+    function copyDiscord(username) {
+        navigator.clipboard.writeText(username);
+
+        const toast = document.getElementById("copy-toast");
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2000);
+    }
+</script>
+
+        {% if user.avatar %}
+            <img
+                src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png?size=128"
+                class="user-avatar"
+                alt="Avatar">
+        {% endif %}
+
+    </button>
+
+    <div class="user-dropdown" id="userDropdown">
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<a
+    href="https://guns.lol/lxvrqz"
+    target="_blank"
+    class="credits">
+    Created by .ycv
+</a>
+
+<script>
+function toggleMenu() {
+    document.getElementById("userDropdown").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

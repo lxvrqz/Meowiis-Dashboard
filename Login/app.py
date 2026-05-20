@@ -172,6 +172,19 @@ def dashboard():
         guilds=guilds
     )
 
+@app.route("/socials")
+def socials():
+
+    user = session.get("user")
+
+    if not user:
+        return redirect(url_for("login"))
+
+    return render_template(
+        "socials.html",
+        user=user
+    )
+
 
 @app.route("/logout")
 def logout():
